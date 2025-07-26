@@ -57,6 +57,7 @@ This is a **Full-Stack Job Listing Web Application** built with:
 - `vite` – fast development server
 - `clsx` (optional) – conditional classes
 - `dotenv` – for environment variables
+- `react toastify` for showing toast globally
 
 ### Backend (Flask)
 
