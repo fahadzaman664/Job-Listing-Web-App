@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from Models.models import Job, db
 from datetime import datetime
+import re
 
 api = Blueprint("api", __name__)
 
@@ -114,4 +115,58 @@ def get_filter_jobs():
 
     jobs = query.all()
     return jsonify([job.to_dict() for job in jobs])
+
+#for scrap
+@api.route("/import/actuaryjobs", methods=["POST"])
+def add_job():
+    data = request.get_json()
+
+    required_fields = ["title", "company", "location", "posting_date", "job_type"]
+    if not all(field in data and data[field] for field in required_fields):
+        return jsonify({"message": "Missing required fields"}), 400
+
+    raw_posting_date = data["posting_date"].lower().strip()
+    now = datetime.utcnow()
+
+    # Default fallback
+    posting_date = now
+
+    try:
+        if "yesterday" in raw_posting_date:
+            posting_date = now - timedelta(days=1)
+        elif match := re.match(r"(\d+)\s*d\s*ago", raw_posting_date):
+            posting_date = now - timedelta(days=int(match.group(1)))
+        elif match := re.match(r"(\d+)\s*w\s*ago", raw_posting_date):
+            posting_date = now - timedelta(weeks=int(match.group(1)))
+        elif match := re.match(r"(\d+)\s*h\s*ago", raw_posting_date):
+            posting_date = now - timedelta(hours=int(match.group(1)))
+        elif match := re.match(r"(\d+)\s*m\s*ago", raw_posting_date):
+            posting_date = now - timedelta(minutes=int(match.group(1)))
+        else:
+            # If it's in ISO format
+            posting_date = datetime.fromisoformat(raw_posting_date)
+    except Exception as e:
+        print(f"Date parsing error: {e}")
+        return jsonify({"message": f"Invalid posting_date format: {raw_posting_date}"}), 400
+
+    # 🔍 Check for existing job before adding
+    existing_job = Job.query.filter_by(title=data["title"].strip(), company=data["company"].strip()).first()
+    if existing_job:
+        return jsonify({"message": "Job already exists. Skipped."}), 409
+
+    job = Job(
+        title=data["title"].strip(),
+        company=data["company"].strip(),
+        location=data["location"].strip(),
+        posting_date=posting_date,
+        job_type=data["job_type"].strip(),
+        tags=data.get("tags", "").strip()
+    )
+
+    db.session.add(job)
+    db.session.commit()
+
+    return jsonify(job.to_dict()), 201
+
+
 

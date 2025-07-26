@@ -66,7 +66,7 @@ const AddJob = () => {
       if (res.success) {
         toast.success("Job added successfully!");
         setFormData({
-          // ✅ reset the form fields
+          //reset the form fields
           title: "",
           company: "",
           location: "",

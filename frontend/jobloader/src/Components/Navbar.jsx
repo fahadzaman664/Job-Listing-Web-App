@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Briefcase, PlusCircle, Home } from "lucide-react"; // Optional: Install lucide-react for icons
-
+import { Briefcase, PlusCircle, Home } from "lucide-react"; 
 const Navbar = () => {
   const location = useLocation();
 
