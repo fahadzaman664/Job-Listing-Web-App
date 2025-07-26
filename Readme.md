@@ -10,33 +10,6 @@ This is a **Full-Stack Job Listing Web Application** built with:
 
 ---
 
-## 📦 Folder Structure
-
-frontend/jobloader/
-├── src/
-│ ├── assets/ # Static assets like logos/images
-│ ├── Components/ # All core UI components
-│ │ ├── ui/ # Sub-components like JobCard, Navbar, etc.
-│ │ │ ├── AddJob.jsx
-│ │ │ ├
-│ │ │ ├── AllJobs.jsx
-│ │ │ ├── FilterSortJob.jsx
-│ │ │ ├── JobCard.jsx
-│ │ │ ├── JobDetail.jsx
-│ │ │ └── Navbar.jsx
-│ ├── Context/ # Context API to manage global state
-│ ├── lib/
-│ │ └── utils.js # Utility functions
-│ ├── App.css # Main CSS
-│ ├── App.jsx # Main App component
-│ ├── axios.js # Axios instance with baseURL
-│ ├── index.css # Global styles
-│ └── main.jsx # App entry point
-├── .env # Environment variables
-├── .gitignore # Git ignore file
-
----
-
 ## ✨ Features
 
 - ✅ View all job listings
