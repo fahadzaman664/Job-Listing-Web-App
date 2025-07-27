@@ -90,7 +90,6 @@ frontend/jobloader/
 - `Flask` – Python web framework
 - `Flask-CORS` – CORS policy handling
 - `Flask-SQLAlchemy` – ORM
-- `Flask-Migrate` – DB migrations
 - `python-dotenv` – to load `.env` variables
 
 ---

@@ -42,7 +42,7 @@ This is a **Full-Stack Job Listing Web Application** built with:
 - ✅ `.env` support for managing environment variables
 - ✅ CORS and cookie-based session support
 - ✅ Error boundaries for better UX
-- 🛠️ Ready to integrate Selenium job scraping (optional enhancement)
+- 🛠️ Ready to integrate Selenium job scraping 
 
 ---
 
@@ -64,7 +64,6 @@ This is a **Full-Stack Job Listing Web Application** built with:
 - `Flask` – Python web framework
 - `Flask-CORS` – CORS policy handling
 - `Flask-SQLAlchemy` – ORM
-- `Flask-Migrate` – DB migrations
 - `python-dotenv` – to load `.env` variables
 
 ---
