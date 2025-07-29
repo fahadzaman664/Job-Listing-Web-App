@@ -67,8 +67,10 @@ This is a **Full-Stack Job Listing Web Application** built with:
 - `python-dotenv` – to load `.env` variables
 
 ---
+## Testing
+- `Thunder client and web browser console`
 
-## 🧠 State Management Approach
+## State Management Approach
 
 - Used **React Context API** (`AppContext.jsx`) to manage:
   - All job data
